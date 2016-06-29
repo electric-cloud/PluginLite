@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <key>PluginLite</key>
+    <version>1.0</version>
+    <label>PluginLite</label>
+    <description>Ultra light plugin customized with DSL</description>
+
+    <!-- If the plugin has a configure page, declare it here.  This will show up as a Configure link for this plugin on the Plugins page. 
+    <configure>configure.xml</configure>
+    -->
+    
+    <!-- If the plugin has a help page, declare it here.  This will show up as a Help link for this plugin on the Plugins page. -->
+    <help>help.xml</help>
+    
+    <!-- Plugin author information. -->
+    <author>Electric Cloud</author>
+    <authorUrl/>
+    
+    <commander-version min="3.6"/>
+    
+    <!-- Specify a category for this plugin; this is used in filtered lists in the Plugin Manager.
+         Typically, it is set to System or Step.
+     -->
+    <category>Other</category>
+	<depends>EC-Core</depends>
+</plugin>

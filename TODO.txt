@@ -1,0 +1,18 @@
+Better debugging
+- log file to property
+- XML output from evalDsl
+
+Clean up createJar.ps1 output
+
+Move main.groovy to project/promote.groovy
+Add demote.groovy
+
+Create Samples
+- PowerShell, ec-perl, ...
+- HTML/JavaScript page
+- Plugin evidence
+- 
+
+Include all all the plugin properties
+
+(Can EF handle plugin pipeline, etc)

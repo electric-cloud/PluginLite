@@ -1,0 +1,1 @@
+print "Hello from ec-perl\n";
