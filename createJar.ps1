@@ -1,6 +1,7 @@
 param (
     [string]$pluginKey = "PluginLite",
-	[string]$version = "1.0"
+	[string]$version = "1.0",
+	[string]$description = "Ultra light plugin customized with DSL"
 )
 
 $pluginName = "${pluginKey}-${version}"
@@ -37,6 +38,23 @@ $ec_setup = Get-Content ec_setup.pl
 $a = Select-Xml -Path .\META-INF\project.xml -XPath '//value[../propertyName/text() = "ec_setup"]'
 $a.Node.'#text'=$ec_setup -join "`n"
 $a.Node.OwnerDocument.Save($a.Path)
+
+# Update plugin.xml with key, version, label, description
+$b = Select-Xml -Path .\META-INF\plugin.xml -XPath '//key'
+$b.Node.'#text' = $pluginKey
+$b.Node.OwnerDocument.Save($b.Path)
+
+$b = Select-Xml -Path .\META-INF\plugin.xml -XPath '//version'
+$b.Node.'#text' = $version
+$b.Node.OwnerDocument.Save($b.Path)
+
+$b = Select-Xml -Path .\META-INF\plugin.xml -XPath '//label'
+$b.Node.'#text' = $pluginKey
+$b.Node.OwnerDocument.Save($b.Path)
+
+$b = Select-Xml -Path .\META-INF\plugin.xml -XPath '//description'
+$b.Node.'#text' = $description
+$b.Node.OwnerDocument.Save($b.Path)
 
 del "${pluginKey}.zip" -ErrorAction SilentlyContinue
 del "${pluginKey}.jar" -ErrorAction SilentlyContinue
