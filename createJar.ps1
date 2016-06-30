@@ -61,6 +61,7 @@ del "${pluginKey}.jar" -ErrorAction SilentlyContinue
 dir . | Add-Zip "${pluginKey}.zip"
 Move-Item "${pluginKey}.zip" "${pluginKey}.jar"
 
+ectool promotePlugin "$pluginName" --promoted false
 ectool uninstallPlugin "$pluginName"
 ectool installPlugin "${pluginKey}.jar"
 ectool promotePlugin "$pluginName"
