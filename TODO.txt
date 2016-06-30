@@ -16,3 +16,6 @@ Create Samples
 Include all all the plugin properties
 
 (Can EF handle plugin pipeline, etc)
+
+createJar.ps1
+[x] Plugin name and version inputs

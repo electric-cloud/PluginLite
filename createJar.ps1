@@ -1,3 +1,10 @@
+param (
+    [string]$pluginKey = "PluginLite",
+	[string]$version = "1.0"
+)
+
+$pluginName = "${pluginKey}-${version}"
+
 function Add-Zip
 {
     param([string]$zipfilename)
@@ -31,13 +38,13 @@ $a = Select-Xml -Path .\META-INF\project.xml -XPath '//value[../propertyName/tex
 $a.Node.'#text'=$ec_setup -join "`n"
 $a.Node.OwnerDocument.Save($a.Path)
 
-del .\PluginLite.zip -ErrorAction SilentlyContinue
-del .\PluginLite.jar -ErrorAction SilentlyContinue
-dir . | Add-Zip .\PluginLite.zip
-mv PluginLite.zip PluginLite.jar
+del "${pluginKey}.zip" -ErrorAction SilentlyContinue
+del "${pluginKey}.jar" -ErrorAction SilentlyContinue
+dir . | Add-Zip "${pluginKey}.zip"
+Move-Item "${pluginKey}.zip" "${pluginKey}.jar"
 
-ectool uninstallPlugin PluginLite-1.0
-ectool installPlugin PluginLite.jar
-ectool promotePlugin PluginLite-1.0
+ectool uninstallPlugin "$pluginName"
+ectool installPlugin "${pluginKey}.jar"
+ectool promotePlugin "$pluginName"
 
 type $Env:TEMP/log.txt
