@@ -1,5 +1,5 @@
 Better debugging
-- log file to property
+[x] log file to property
 - XML output from evalDsl
 
 Clean up createJar.ps1 output
@@ -21,4 +21,4 @@ createJar.ps1
 [x] Plugin name and version inputs
 [x] Update plugin.xml with plugin key, version, label, and description
 
-[] Test instructions
+[x] Test instructions
