@@ -4,8 +4,8 @@ Better debugging
 
 Clean up createJar.ps1 output
 
-Move main.groovy to project/promote.groovy
-Add demote.groovy
+[x] Move main.groovy to project/promote.groovy
+[x] Add demote.groovy
 
 Create Samples
 - PowerShell, ec-perl, ...
@@ -20,3 +20,5 @@ Include all all the plugin properties
 createJar.ps1
 [x] Plugin name and version inputs
 [x] Update plugin.xml with plugin key, version, label, and description
+
+[] Test instructions

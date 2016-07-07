@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <plugin>
-  <key>testP</key>
-  <version>1.7</version>
-  <label>testP</label>
-  <description>a description</description>
+  <key>PluginLite</key>
+  <version>1.0</version>
+  <label>PluginLite</label>
+  <description>Ultra light plugin customized with DSL</description>
   <!-- If the plugin has a configure page, declare it here.  This will show up as a Configure link for this plugin on the Plugins page. 
     <configure>configure.xml</configure>
     -->
