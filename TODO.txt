@@ -1,6 +1,6 @@
 Better debugging
 [x] log file to property
-- XML output from evalDsl
+[x] XML output from evalDsl
 
 Clean up createJar.ps1 output
 

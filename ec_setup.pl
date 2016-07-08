@@ -1,5 +1,4 @@
 use Cwd;
-use Data::Dumper;
 use File::Spec;
 
 my $dir = getcwd;
@@ -29,12 +28,12 @@ my $dslReponse = $commander->evalDsl($dsl,
 				"pluginName":"$pluginName"
 			}
 		)}
-);
-print $fh Dumper $dslReponse;#->findvalue("//response")->string_value;
+)->findnodes_as_string("/");
+print $fh $dslReponse;
 
 close $fh;
 
-# TODO: create log file output property
+# Create log file output property
 open LOGFILE, $logfile or die "Couldn't open file: $!";
 my $logFileContent = <LOGFILE>;
 my $propertyResponse = $commander->setProperty("/plugins/$pluginName/project/ec_setup.log",
