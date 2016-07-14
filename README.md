@@ -10,7 +10,7 @@ PluginLite makes is very easy to create a plugin project based on DSL.  All that
 6. Import plugin and promote
 
 ## Alternative steps to creating a plugin
-The PowerShell script createPlugin.ps1 can be used as an alternative to the instructions above:
+The PowerShell script createPlugin.ps1 can be used as an alternative to the instructions above.  Edit dsl/promote.groovy to include your own DSL, then
 ```powershell
 ectool --server <your flow server> login <username>
 .\createPlugin.ps1 <your plugin name> <version> <description>
