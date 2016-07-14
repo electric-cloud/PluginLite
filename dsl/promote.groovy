@@ -24,7 +24,8 @@ project pluginName,{
 						<procedure>$procedureName</procedure>
 						<category>Utility</category>
 					</step>
-				""".stripIndent()
+				""".stripIndent(),
+			description: "A sample procedure"
 		// TIP: Remove this property in demote.groovy
 		// END property	
 	

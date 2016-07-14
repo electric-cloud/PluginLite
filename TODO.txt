@@ -22,3 +22,10 @@ createJar.ps1
 [x] Update plugin.xml with plugin key, version, label, and description
 
 [x] Test instructions
+
+Instructions on including external DSL files
+package, import?
+https://github.com/jenkinsci/job-dsl-plugin/wiki/Real-World-Examples
+evaluate(new File("dsl.groovy")) - Seems to work only with groovy, not DSL
+evalDsl dsl: new File("/vagrant/prop/MyProp.groovy").text
+- Unknown exception during DSL eval at line 1: Could not obtain transaction-synchronized Session for current thread
