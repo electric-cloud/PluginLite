@@ -3,11 +3,15 @@ use File::Spec;
 
 my $dir = getcwd;
 my $logfile ="";
+my $pluginDir;
 if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
 	$logfile = "../../$pluginName/ec_setup.log";
+	$pluginDir = File::Spec->rel2abs( "../../$pluginName" );
 } else {
 	$logfile = "$ENV{'TEMP'}/ec_setup.log";
+	$pluginDir = $dir;
 }
+$commander->setProperty("/plugins/$pluginName/project/pluginDir",{value=>$pluginDir});
 open(my $fh, '>', $logfile) or die "Could not open file '$logfile' $!";
 print $fh "Plugin Name: $pluginName\n";
 print $fh "Current directory: $dir\n";
