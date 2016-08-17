@@ -61,7 +61,8 @@ $b.Node.OwnerDocument.Save($b.Path)
 write-host "Removing old zip and jar files"
 del "${pluginKey}.zip" -ErrorAction SilentlyContinue
 del "${pluginKey}.jar" -ErrorAction SilentlyContinue
-dir . | Add-Zip "${pluginKey}.zip"
+# Add all but .git directories to zip file
+dir -exclude .git | ? {$_.mode -match "d"} | Add-Zip "${pluginKey}.zip"
 Move-Item "${pluginKey}.zip" "${pluginKey}.jar"
 
 write-host "Demoting old plugin"
