@@ -21,6 +21,10 @@ This will change META-INF/plugin.xml to the values provided, create a jar file p
 Promotion and Demotion logging information is written to both a property and a file:
 - Property: plugin property sheet / ec_setup.log
 - File: flow plugins directory / plugin name / ec_setup.log
+- 
+
+## Running in Linux
+- See "PluginLite_Linux" to get PluginLite running in a Linux environment
 
 ## Optional functionality
 The file dsl/demote.groovy is run when the plugin in demoted.  Use this to clean up any properties, project or other objects that were created by promote.groovy.
