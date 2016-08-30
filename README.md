@@ -2,7 +2,8 @@
 PluginLite makes is very easy to create a plugin project based on DSL.  All that is needed is a text editor and the ability to zip or jar up directories.
 
 ## Steps to creating a custom plugin from PluginLite
-1. Copy directory, e.g., cp -r PluginLite MyPlugin
+1. Download the zip file from github or do a **git clone https://github.com/electric-cloud/PluginLite**
+2. Copy directory, e.g., cp -r PluginLite MyPlugin
 2. Decide on a version number, e.g., 1.0
 3. Edit META-INF/plugin.xml (key, version, label) with the name and version of your plugin
 4. Edit dsl/promote.groovy to include your own DSL
@@ -24,7 +25,7 @@ Promotion and Demotion logging information is written to both a property and a f
 - 
 
 ## Running in Linux
-- See "PluginLite_Linux" to get PluginLite running in a Linux environment
+- See page 8 of "PluginLite Introduction" to get PluginLite running in a Linux environment
 
 ## Optional functionality
 The file dsl/demote.groovy is run when the plugin in demoted.  Use this to clean up any properties, project or other objects that were created by promote.groovy.
