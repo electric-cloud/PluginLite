@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <plugin>
   <key>PluginLite</key>
-  <version>1.0</version>
+  <version>1.5</version>
   <label>PluginLite</label>
   <description>Ultra light plugin customized with DSL</description>
   <category>Utility</category>

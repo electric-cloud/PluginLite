@@ -33,5 +33,34 @@ project pluginName,{
 			// Get step content from a file in this plugin directory
 			command: new File(pluginDir + "/dsl/steps/Hello.pl").text
 	}
+	
+	/*
+		Example of breaking up a large DSL file into smaller chunks and combined in a procedure.
+		See https://ask.electric-cloud.com/questions/6777/how-to-best-break-up-large-dsl-files.html
+		for details.
+	*/
+	def dslDir = pluginDir + "/dsl/steps/"
+    def commonProp = "abc"
+	
+	procedure "Multi-DSL",{
 
-}
+		step "Common properties",
+			command: """\
+				ectool setProperty /myJob/commonProp "$commonProp"
+				ectool setProperty /myJob/commonProp "$dslDir"
+			""".stripIndent()
+		
+		step "DSL 0 - header",
+			command: new File(dslDir + "header.groovy").text,
+			shell: "ectool evalDsl --dslFile {0}"
+
+		step "DSL 1",
+			command: new File(dslDir + "dsl_1.groovy").text,
+			shell: "ectool evalDsl --dslFile {0}"
+	
+	} // procedure "Multi-DSL"
+} // project pluginName
+
+transaction {
+	runProcedure projectName: pluginName, procedureName: "Multi-DSL"
+} 
