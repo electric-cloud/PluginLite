@@ -11,6 +11,10 @@ def header = '''\
 	$[/myJob/header]
 '''.stripIndent()
 
+// Get head from an already run job for debugging purposes
+def jobName = ""
+if (jobName) header = getProperty("/jobs/$jobName/header").value
+
 // Use the appropriate variable header
 if (header.contains('$[')) { // Being evaluated outside of job step context
 	evaluate(debugHeader)
