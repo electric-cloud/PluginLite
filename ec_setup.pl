@@ -5,8 +5,10 @@ my $dir = getcwd;
 my $logfile ="";
 my $pluginDir;
 if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
-	$logfile = "../../$pluginName/ec_setup.log";
-	$pluginDir = File::Spec->rel2abs( "../../$pluginName" );
+	$logfile = "$ENV{COMMANDER_PLUGINS}/$pluginName/ec_setup.log";
+	$pluginDir = "$ENV{ COMMANDER_PLUGINS}/$pluginName"
+	#$logfile = "../../$pluginName/ec_setup.log";
+	#$pluginDir = File::Spec->rel2abs( "../../$pluginName" );
 } else {
 	$logfile = "$ENV{'TEMP'}/ec_setup.log";
 	$pluginDir = $dir;
