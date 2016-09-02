@@ -25,6 +25,7 @@ ec-perl createPlugin.pl [--pluginKey <your plugin name>] [--version <version>] [
 ```
 
 This will perform the following actions:
+
 1. Update META-INF/plugin.xml with the values provided
 2. Insert the file ec_setup.pl into META-INF/project.xml (this code is run on promotion and demotion/uninstall of the plugin)
 3. Create a plugin jar file from the files and directories in the current working directory
