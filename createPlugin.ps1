@@ -1,6 +1,6 @@
 param (
     [string]$pluginKey = "PluginLite",
-	[string]$version = "1.6",
+	[string]$version = "1.7",
 	[string]$description = "Ultra light plugin customized with DSL"
 )
 

@@ -11,12 +11,25 @@ PluginLite makes is very easy to create a plugin project based on DSL.  All that
 6. Import plugin and promote
 
 ## Alternative steps to creating a plugin
-The PowerShell script createPlugin.ps1 can be used as an alternative to the instructions above.  Edit dsl/promote.groovy to include your own DSL, then
+PowerShell and ec-perl scripts (createPlugin.ps1 and createPlugin.pl) are provided as an alternative to the instructions above.  Edit dsl/promote.groovy to include your own DSL, then
 ```powershell
 ectool --server <your flow server> login <username>
-.\createPlugin.ps1 <your plugin name> <version> <description>
+.\createPlugin.ps1 [-pluginKey <your plugin name>] [-version <version>] [-description <description>]
 ```
-This will change META-INF/plugin.xml to the values provided, create a jar file plugin from directories, upload  and promote the plugin.
+
+or
+
+```
+ectool --server <your flow server> login <username>
+ec-perl createPlugin.pl [--pluginKey <your plugin name>] [--version <version>] [--description <description>]
+```
+
+This will perform the following actions:
+1. Update META-INF/plugin.xml with the values provided
+2. Insert the file ec_setup.pl into META-INF/project.xml (this code is run on promotion and demotion/uninstall of the plugin)
+3. Create a plugin jar file from the files and directories in the current working directory
+4. Install plugin on to the Electric Flow server
+5. Promote the plugin
 
 ## Debugging
 Promotion and Demotion logging information is written to both a property and a file:
