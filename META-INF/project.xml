@@ -1,59 +1,61 @@
-<exportedData version="39" buildLabel="build_3.5_30434_OPT_2010.01.13_07:32:22" buildVersion="3.5.1.30434">
+<exportedData buildLabel="build_3.5_30434_OPT_2010.01.13_07:32:22" buildVersion="3.5.1.30434" version="39">
   <exportPath>/projects/PluginLite-1.0</exportPath>
   <project>
     <projectName>PluginLite-1.0</projectName>
     <propertySheet>
       <property>
-        <propertyName>ec_setup</propertyName>
         <expandable>0</expandable>
-        <value>use Cwd;
+        <propertyName>ec_setup</propertyName>
+        <value># ec_setup.pl
+use Cwd;
 use File::Spec;
 
 my $dir = getcwd;
-my $logfile ="";
+my $logfile =&quot;&quot;;
 my $pluginDir;
 if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
-	$logfile = "$ENV{COMMANDER_PLUGINS}/$pluginName/ec_setup.log";
-	$pluginDir = "$ENV{ COMMANDER_PLUGINS}/$pluginName"
-	#$logfile = "../../$pluginName/ec_setup.log";
-	#$pluginDir = File::Spec-&gt;rel2abs( "../../$pluginName" );
+	$logfile = &quot;$ENV{COMMANDER_PLUGINS}/$pluginName/ec_setup.log&quot;;
+	$pluginDir = &quot;$ENV{ COMMANDER_PLUGINS}/$pluginName&quot;
+	#$logfile = &quot;../../$pluginName/ec_setup.log&quot;;
+	#$pluginDir = File::Spec-&gt;rel2abs( &quot;../../$pluginName&quot; );
 } else {
-	$logfile = "$ENV{'TEMP'}/ec_setup.log";
+	$logfile = &quot;$ENV{'TEMP'}/ec_setup.log&quot;;
 	$pluginDir = $dir;
 }
-$commander-&gt;setProperty("/plugins/$pluginName/project/pluginDir",{value=&gt;$pluginDir});
-open(my $fh, '&gt;', $logfile) or die "Could not open file '$logfile' $!";
-print $fh "Plugin Name: $pluginName\n";
-print $fh "Current directory: $dir\n";
+$commander-&gt;setProperty(&quot;/plugins/$pluginName/project/pluginDir&quot;,{value=&gt;$pluginDir});
+open(my $fh, '&gt;', $logfile) or die &quot;Could not open file '$logfile' $!&quot;;
+print $fh &quot;Plugin Name: $pluginName\n&quot;;
+print $fh &quot;Current directory: $dir\n&quot;;
 
 # Evaluate promote.groovy or demote.groovy based on whether plugin is being promoted or demoted ($promoteAction)
 local $/ = undef;
 # If env variable QUERY_STRING exists:
 if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
-	open FILE, "../../$pluginName/dsl/$promoteAction.groovy" or die "Couldn't open file: $!";
+	open FILE, &quot;../../$pluginName/dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
 } else {  # Promotion from the command line
-	open FILE, "dsl/$promoteAction.groovy" or die "Couldn't open file: $!";
+	open FILE, &quot;dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
 }
 my $dsl = &lt;FILE&gt;;
 close FILE;
 my $dslReponse = $commander-&gt;evalDsl($dsl,
 		{parameters=&gt;qq(
 			{
-				"pluginName":"$pluginName"
+				&quot;pluginName&quot;:&quot;$pluginName&quot;
 			}
 		)}
-)-&gt;findnodes_as_string("/");
+)-&gt;findnodes_as_string(&quot;/&quot;);
 print $fh $dslReponse;
 
 close $fh;
 
 # Create log file output property
-open LOGFILE, $logfile or die "Couldn't open file: $!";
+open LOGFILE, $logfile or die &quot;Couldn't open file: $!&quot;;
 my $logFileContent = &lt;LOGFILE&gt;;
-my $propertyResponse = $commander-&gt;setProperty("/plugins/$pluginName/project/ec_setup.log",
+my $propertyResponse = $commander-&gt;setProperty(&quot;/plugins/$pluginName/project/ec_setup.log&quot;,
 			{value=&gt;$logFileContent}
 	);
-close LOGFILE;</value>
+close LOGFILE;
+</value>
       </property>
     </propertySheet>
   </project>

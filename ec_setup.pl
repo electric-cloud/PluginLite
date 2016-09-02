@@ -1,3 +1,4 @@
+# ec_setup.pl
 use Cwd;
 use File::Spec;
 
