@@ -10,7 +10,7 @@ use ElectricCommander ();
 $| = 1;
 my $ec = new ElectricCommander->new();
 
-my $version = "1.7";
+my $version = "1.7.1";
 my $pluginKey = "PluginLite";
 my $description = "Ultra light plugin customized with DSL";
 GetOptions ("version=s" => \$version,
@@ -23,7 +23,7 @@ Error in command line arguments
 		[--version <version>]
 		[--pluginKey <version>]
 		[--description <version>]
-		
+
 		)
 );
 
