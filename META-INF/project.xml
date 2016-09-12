@@ -6,55 +6,46 @@
       <property>
         <expandable>0</expandable>
         <propertyName>ec_setup</propertyName>
-        <value># ec_setup.pl
-use Cwd;
+        <value>use Cwd;
 use File::Spec;
-
+use POSIX;
 my $dir = getcwd;
 my $logfile =&quot;&quot;;
 my $pluginDir;
-if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
-	$logfile = &quot;$ENV{COMMANDER_PLUGINS}/$pluginName/ec_setup.log&quot;;
-	$pluginDir = &quot;$ENV{ COMMANDER_PLUGINS}/$pluginName&quot;
-	#$logfile = &quot;../../$pluginName/ec_setup.log&quot;;
-	#$pluginDir = File::Spec-&gt;rel2abs( &quot;../../$pluginName&quot; );
+if(defined $ENV{QUERY_STRING}) { # Promotion through UI
+       $pluginDir = $ENV{COMMANDER_PLUGINS} . &quot;/$pluginName&quot;;
+
 } else {
-	$logfile = &quot;$ENV{'TEMP'}/ec_setup.log&quot;;
-	$pluginDir = $dir;
+       $pluginDir = $dir;
 }
+
 $commander-&gt;setProperty(&quot;/plugins/$pluginName/project/pluginDir&quot;,{value=&gt;$pluginDir});
-open(my $fh, '&gt;', $logfile) or die &quot;Could not open file '$logfile' $!&quot;;
-print $fh &quot;Plugin Name: $pluginName\n&quot;;
-print $fh &quot;Current directory: $dir\n&quot;;
+$logfile .= &quot;Plugin Name: $pluginName\n&quot;;
+$logfile .= &quot;Current directory: $dir\n&quot;;
 
 # Evaluate promote.groovy or demote.groovy based on whether plugin is being promoted or demoted ($promoteAction)
 local $/ = undef;
 # If env variable QUERY_STRING exists:
-if(defined $ENV{'QUERY_STRING'}) { # Promotion through UI
-	open FILE, &quot;../../$pluginName/dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
+if(defined $ENV{QUERY_STRING}) { # Promotion through UI
+       open FILE, $ENV{COMMANDER_PLUGINS} . &quot;/$pluginName/dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
 } else {  # Promotion from the command line
-	open FILE, &quot;dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
+       open FILE, &quot;dsl/$promoteAction.groovy&quot; or die &quot;Couldn't open file: $!&quot;;
 }
 my $dsl = &lt;FILE&gt;;
 close FILE;
 my $dslReponse = $commander-&gt;evalDsl($dsl,
-		{parameters=&gt;qq(
-			{
-				&quot;pluginName&quot;:&quot;$pluginName&quot;
-			}
-		)}
+              {parameters=&gt;qq(
+                     {
+                           &quot;pluginName&quot;:&quot;$pluginName&quot;
+                     }
+              )}
 )-&gt;findnodes_as_string(&quot;/&quot;);
-print $fh $dslReponse;
+$logfile .= $dslReponse;
 
-close $fh;
+# Create output property
 
-# Create log file output property
-open LOGFILE, $logfile or die &quot;Couldn't open file: $!&quot;;
-my $logFileContent = &lt;LOGFILE&gt;;
-my $propertyResponse = $commander-&gt;setProperty(&quot;/plugins/$pluginName/project/ec_setup.log&quot;,
-			{value=&gt;$logFileContent}
-	);
-close LOGFILE;
+my $nowString = localtime;
+$commander-&gt;setProperty(&quot;/plugins/$pluginName/project/logs/$nowString&quot;,{value=&gt;$logfile});
 </value>
       </property>
     </propertySheet>
