@@ -47,7 +47,7 @@ project pluginName,{
 		step "Common properties",
 			command: """\
 				ectool setProperty /myJob/commonProp "$commonProp"
-				ectool setProperty /myJob/commonProp "$dslDir"
+				ectool setProperty /myJob/dslDir "$dslDir"
 			""".stripIndent()
 
 		step "DSL 0 - header",

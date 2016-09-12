@@ -3,4 +3,5 @@ property "/myJob/header", value: '''\
 	a = "abc"
 	b = [1:2, 3:4]
 	proj = "$[/myProject/projectName]"
+	commonProp = "$[/myJob/commonProp]"
 '''.stripIndent()

@@ -10,7 +10,12 @@ use ElectricCommander ();
 $| = 1;
 my $ec = new ElectricCommander->new();
 
-my $version = "1.7.1";
+my $version = "1.7.2";
+# Revision history
+#	1.7.1 - Laurent removed log file writing, now only writes to plugin project property
+#	1.7.2 - Multi-DSL issue: commonProp was not being included in header
+#
+#
 my $pluginKey = "PluginLite";
 my $description = "Ultra light plugin customized with DSL";
 GetOptions ("version=s" => \$version,
