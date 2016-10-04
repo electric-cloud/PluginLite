@@ -1,6 +1,6 @@
 param (
     [string]$pluginKey = "PluginLite",
-	[string]$version = "1.7",
+	[string]$version = "1.8",
 	[string]$description = "Ultra light plugin customized with DSL"
 )
 
@@ -57,6 +57,11 @@ $b.Node.OwnerDocument.Save($b.Path)
 $b = Select-Xml -Path .\META-INF\plugin.xml -XPath '//description'
 $b.Node.'#text' = $description
 $b.Node.OwnerDocument.Save($b.Path)
+
+# Replace @PLUGIN_NAME@ with $pluginKey
+# Update help.xml
+write-host "[info] Processing pages\help.xml..."
+(Get-Content help.xml) -replace "@PLUGIN_NAME@", $pluginKey | Set-Content pages\help.xml
 
 write-host "Removing old zip and jar files"
 del "${pluginKey}.zip" -ErrorAction SilentlyContinue

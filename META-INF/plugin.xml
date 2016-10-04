@@ -1,11 +1,12 @@
 <plugin>
   <author>Electric Cloud</author>
-  <authorUrl></authorUrl>
+  <authorUrl>
+  </authorUrl>
   <category>Utility</category>
   <commander-version min="5.0" />
   <description>Ultra light plugin customized with DSL</description>
   <help>help.xml</help>
   <key>PluginLite</key>
   <label>PluginLite</label>
-  <version>1.7.2</version>
+  <version>1.8</version>
 </plugin>

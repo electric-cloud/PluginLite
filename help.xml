@@ -1,11 +1,11 @@
 <componentContainer>
-  <title>PluginLite Help</title>
-  <h2>PluginLite Example Help</h2>
+  <title>@PLUGIN_NAME@ Help</title>
+  <h2>@PLUGIN_NAME@ Example Help</h2>
   <h3>Overview</h3>
   <pre>
 (Place your help documentation here.  You can link to an html document in your plugin as shown below.)
   </pre>
   <p>
-	<a href="../../plugins/PluginLite/index.html">Sample Document</a>
+	<a href="../../plugins/@PLUGIN_NAME@/index.html">Sample Document</a>
   </p>
 </componentContainer>

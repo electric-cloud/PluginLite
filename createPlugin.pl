@@ -10,10 +10,11 @@ use ElectricCommander ();
 $| = 1;
 my $ec = new ElectricCommander->new();
 
-my $version = "1.7.2";
+my $version = "1.8";
 # Revision history
-#	1.7.1 - Laurent removed log file writing, now only writes to plugin project property
+#	1.8   - Add link and tokenize plugin name in help.xml
 #	1.7.2 - Multi-DSL issue: commonProp was not being included in header
+#	1.7.1 - Laurent removed log file writing, now only writes to plugin project property
 #
 #
 my $pluginKey = "PluginLite";
@@ -69,6 +70,24 @@ $ref->{plugin}[0]->{description}[0] = $description;
 open(my $fh, '>', $xmlFile) or die "Could not open file '$xmlFile' $!";
 print $fh $xs->XMLout($ref);
 close $fh;
+
+# Replace @PLUGIN_NAME@ with $pluginKey
+# Update help.xml
+my $inFile = "help.xml";
+print "[INFO] - Processing '$inFile' file...\n";
+open(FILE, "<$inFile") || die "Could not open file '$inFile' $!";
+my @lines = <FILE>;
+close(FILE);
+
+my @newlines;
+foreach(@lines) {
+   $_ =~ s/\@PLUGIN_NAME\@/$pluginKey/g;
+   push(@newlines,$_);
+}
+
+open(FILE, ">pages/$inFile") || die "Could not open file 'pages/$inFile' $!";
+print FILE @newlines;
+close(FILE);
 
 # Create plugin jar file
 print "[INFO] - Creating plugin jar file, ${pluginKey}.jar\n";
